@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+:root{
+  /* Gourmet palette: deep navy, richer warm gold, soft creamy background */
+  --bg-gradient: linear-gradient(180deg, #fff8f1 0%, #fff4e6 100%);
+  --card-bg: #ffffff;
+  --primary: #0b2538; /* deep navy */
+  --accent: #d4a84a; /* stronger warm gold */
+  --accent-2: #e9c984; /* lighter gold */
+  --muted: #6b7280;
+  --container-width: 1150px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg-gradient); color:#0f172a}
+
+/* Headings use a serif for a gourmet feel */
+h1,h2,h3{font-family:'Playfair Display', Georgia, serif}
+
+.container{max-width:var(--container-width);margin:0 auto;padding:32px}
+
+/* Header */
+.site-header{background:transparent;padding:20px 0}
+.site-nav{display:flex;gap:24px;align-items:center}
+.site-brand{font-weight:700;font-size:18px;color:var(--primary)}
+.site-nav a{color:#0f172a;text-decoration:none;font-weight:500;padding:8px;border-radius:8px}
+.site-nav a:hover{background:rgba(6,78,204,0.06)}
+
+/* Hero */
+.hero{display:flex;gap:28px;align-items:center;background:linear-gradient(90deg, rgba(11,37,56,0.03), rgba(212,168,74,0.06));padding:40px;border-radius:18px;margin-bottom:28px}
+.hero-left{flex:1}
+.hero h1{margin:0;font-size:34px;line-height:1.02}
+.hero p{color:var(--muted);margin-top:8px;font-size:16px}
+.hero-cta{margin-top:18px}
+.cta-btn{background:var(--accent);color:var(--primary);padding:12px 18px;border:none;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(198,151,58,0.12)}
+.cta-secondary{background:transparent;border:1px solid rgba(11,37,56,0.06);padding:10px 16px;border-radius:12px;margin-left:12px;color:var(--primary)}
+.hero-image{width:220px;height:220px;border-radius:14px;object-fit:cover;box-shadow:0 10px 30px rgba(12,18,36,0.08);background:linear-gradient(180deg,#fff9f2, #fff6ea);padding:10px}
+
+/* Sections */
+.card{background:var(--card-bg);padding:24px;border-radius:14px;box-shadow:0 12px 30px rgba(11,37,56,0.06);margin-bottom:20px;border:1px solid rgba(11,37,56,0.03)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.service-title{font-weight:600;margin-bottom:8px;color:var(--primary)}
+.service-desc{color:var(--muted);font-size:14px}
+
+/* Contact */
+.contact .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:20px}
+.contact form{display:flex;flex-direction:column;gap:10px}
+.contact input,.contact textarea{padding:12px;border:1px solid #e6eefc;border-radius:10px}
+.contact .muted{color:var(--muted);font-size:14px}
+
+.footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+
+/* Brand utility classes */
+.brand-title{color:var(--primary)}
+.cta-primary{background:var(--accent);color:var(--primary)}
+.testimonial-gradient{background:linear-gradient(90deg, var(--accent), var(--primary));}
+.footer-gradient{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff}
+
+/* Responsive */
+@media (max-width:900px){
+  .grid-3{grid-template-columns:1fr}
+  .contact .contact-grid{grid-template-columns:1fr}
+  .hero{flex-direction:column}
+  .hero-image{width:180px;height:180px}
+}
+
+/* subtle float animation used in Hero */
+
+@keyframes floaty{
+  0%{transform: translateY(0)}
+  50%{transform: translateY(-8px)}
+  100%{transform: translateY(0)}
+}
+.animate-float{animation: floaty 4s ease-in-out infinite}
+
+/* Carousel image tweaks to better match the gourmet palette */
+.carousel-img{filter:brightness(1.03) contrast(1.06) saturate(1.05);transition:filter 300ms ease}
+.carousel-img:hover{filter:brightness(1.06) contrast(1.08) saturate(1.08)}
+
+/* Gold sweep animation for borders only */
+.gold-sweep{position:relative;overflow:visible}
+.gold-sweep::before{
+  content: '';
+  position: absolute;
+  inset: 0; /* fill the element box so mask can cut the centre */
+  padding: 4px; /* thickness of the visible border */
+  box-sizing: border-box;
+  border-radius: 16px;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,168,74,0.45) 25%, rgba(212,168,74,0.95) 50%, rgba(212,168,74,0.45) 75%, transparent 100%);
+  transform: translateX(-110%);
+  opacity: 1;
+  pointer-events: none;
+  /* mask out the center so only the padding (border) area is visible */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  /* animate by default so no hover is required */
+  animation: gold-sweep 2.4s linear infinite;
+}
+/* Stagger animations for adjacent cards to avoid perfect sync */
+.gold-sweep:nth-child(1)::before{animation-delay: 0s}
+.gold-sweep:nth-child(2)::before{animation-delay: 0.18s}
+.gold-sweep:nth-child(3)::before{animation-delay: 0.36s}
+.gold-sweep:nth-child(4)::before{animation-delay: 0.54s}
+.gold-sweep:nth-child(5)::before{animation-delay: 0.72s}
+.gold-sweep:nth-child(6)::before{animation-delay: 0.90s}
+.gold-sweep:nth-child(7)::before{animation-delay: 1.08s}
+.gold-sweep:nth-child(8)::before{animation-delay: 1.26s}
+
+@keyframes gold-sweep{
+  0%{transform:translateX(-110%)}
+  50%{transform:translateX(10%)}
+  100%{transform:translateX(110%)}
+}
+
+

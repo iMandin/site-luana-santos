@@ -1,0 +1,15 @@
+{
+  "name": "Dra. Luana Santos - Fisioterapia",
+  "short_name": "LuanaFisio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0277bd",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}
