@@ -23,7 +23,7 @@ pnpm-debug.log*
 .vscode/
 
 # Public heavy assets
-public/images/
+# (removed to include images in repo)
 
 # TypeScript
 *.tsbuildinfo
